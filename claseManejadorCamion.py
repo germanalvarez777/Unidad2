@@ -21,8 +21,12 @@ class ManejadorCamion:
                 pat = fila[2]
                 marca = fila[3]
                 tara = int(fila[4])
-                unCamion = Camion(id, nom, pat, marca, tara)
-                self.agregarLista (unCamion)
+                if ((id >= 1) and (id <= 20)):
+                    unCamion = Camion(id, nom, pat, marca, tara)
+                    self.agregarLista (unCamion)
+                else:
+                    print("Id Camion {} , patente {} no es valido". format(id, pat))
+                
     def buscarCamion (self, nroCamion, pesoTotalC):
         for c in self.__listaCamion:
             if (c.getNro() == nroCamion):

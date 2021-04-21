@@ -9,8 +9,6 @@ class Cosecha:
         archivo = open ('cosechaBodega.csv', 'r')
         Reader = csv.reader(archivo, delimiter = ',')
         bandera = True
-        #cont = 1
-        dias = []
         for fila in Reader:
             #fila[0] es id de camion, fila[1] es dia, fila[2] es pesototal camion
             if bandera:
