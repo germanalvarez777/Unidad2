@@ -1,7 +1,24 @@
 import os
 from claseMenuConjunto import MenuConjunto
 from claseConjunto import Conjunto
+
+def test ():
+    print("TEST".center(40, '='))
+    con1Test = Conjunto ()
+    con1Test.cargarConjunto()
+    conj2Test = Conjunto ()
+    conj2Test.cargarConjunto()
+
+    print("\n--Mostramos el primer conjunto--")
+    con1Test.mostrarConjunto()
+    print("\n--Mostramos el segundo conjunto--")
+    conj2Test.mostrarConjunto()    
+
 if __name__ == '__main__':
+
+    test()
+
+    print("Ha finalizado el TEST".center(30,'-'))
     con1 = Conjunto ()
     con1.cargarConjunto()
     conj2 = Conjunto ()
