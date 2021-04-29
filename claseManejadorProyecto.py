@@ -81,7 +81,6 @@ class ManejadorProyecto:
         for proy in self.__listaProyecto:
             id = proy.getIdProyecto()
             verificar = mip.coDirector (id)
-            print("Id: ", id, "verificar: ", verificar)
             if (verificar == True):
                 print("El proyecto {} tiene un CoDirector con categoria I o II o III".format(id))
                 proy.acumularPuntos (10)
