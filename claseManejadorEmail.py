@@ -57,17 +57,28 @@ def testArchivocsv ():
 
     print("La cantidad de direcciones con dominio igual al ingresado es ", cont)
 
-
-
 if __name__ == '__main__':
     #Probamos la funcionalidad
-    manejE = ManejadorEmail()
     claveDefecto = '12345'
-    em = Email('roberto', 'gmail', 'net', claveDefecto)
+    manejE = ManejadorEmail()
+    asig = input ("Quiere asignarle ala persona la clave por defecto?(s/n): ")
+    if (asig == 's'):
+        print("La clave por defecto es 12345")
+    elif (asig == 'n'):
+        claveDefecto = input("Ingrese la contraseña de la persona: ")
+    else:
+        print("No selecciono la opcion correcta")
+    
+    idcuenta = input("Ingrese el id de la cuenta: ")
+    dom = input("Ingrese el dominio: ")
+    tipod = input("Ingrese el tipo de dominio: ")
+
+    em = Email(idcuenta, dom, tipod, claveDefecto)
     manejE.agregarEmail(em)
     #Apartado 1
     print("Apartado 1".center(50, "*"))
-    envioMsj(em, 'roberto funes')
+    nombre = input("Ingrese el nombre de una persona: ")
+    envioMsj(em, nombre)
     #Apartado 2
     print("Apartado 2".center(50, "*"))
     modificarClave(em)
