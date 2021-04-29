@@ -37,9 +37,10 @@ class ManejadorAlumno:
             if (anioDiv == (alum.getDiv())):
                 if (alum.getInas() > AlumnoEscuela.getMaxInasistencias()):
                     porc = (alum.getInas() * 100)/AlumnoEscuela.getMaxInasistencias()
-                    print("%s       %3.2f" %(alum.getNombre(), porc-100))
+                    print("%s       %3.2f" %(alum.getNombre(), porc-100))               #como el porcentaje supera los 100, restamos para solo mostrar el incremento
                 else:
                     print("--Alumno {} no supero la cantidad max de inasistencias--\n".format(alum.getNombre()))
+ 
 
     def modificarInas (self, nuevaCant):                #opcion b
         AlumnoEscuela.setMaxInasistencias(nuevaCant)

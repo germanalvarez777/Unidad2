@@ -18,6 +18,12 @@ if __name__ == '__main__':
             """)
         op = (input('Ingrese una opcion: '))
         os.system('clear')                              #Windows utilizamos cls, en Linux clear
-        menu.opcion(op)
-        if ((op != 'a') and (op != 'b')):
+        if ((op != 'a') and (op != 'b') and (op != 'c')):
+            print("Opcion no valida")
             salir = False
+        else:
+            if (op == 'c'):
+                menu.salir()
+                salir = False
+            else:
+                menu.opcion(op)
