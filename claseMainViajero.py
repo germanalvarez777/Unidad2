@@ -4,8 +4,19 @@ from claseViajeroFrecuente import ViajeroFrecuente
 from claseManejadorViajero import ManejadorViajero
 from claseMenuViajero import Menu
 
+def test ():
+    print("TEST".center(40,'='))
+    mvTest = ManejadorViajero()
+    mvTest.testListaViajeros()
+    print("Mostramos la Lista generada".center(40, "="))
+    mvTest.mostrarLista()
+
+
 if __name__ == '__main__':          #cuando hacemos la lectura del archivo csv, la mejor opcion es hacerla desde main
     
+    test()
+    print("\n---Ha finalizado el testeo de datos----")
+    input("Presione una tecla para continuar: ")
     mv = ManejadorViajero()
     mv.testListaViajeros()
     print("Mostramos la Lista generada".center(40, "="))
