@@ -57,8 +57,28 @@ def testArchivocsv ():
 
     print("La cantidad de direcciones con dominio igual al ingresado es ", cont)
 
+def test ():
+    print("TEST".center(40,'='))
+    idcuenta = input("Ingrese el id de la cuenta: ")
+    dom = input("Ingrese el dominio: ")
+    tipod = input("Ingrese el tipo de dominio: ")
+    clave = input ("Ingrese la clave: ")
+    emTest = Email(idcuenta, dom, tipod, clave)
+    emTest.mostrarDatos()
+
+    cuentaTest = Email()
+    direcc = input("Ingrese una direccion: ")
+    cuentaTest.crearCuenta(direcc)
+    cuentaTest.mostrarDatos()
+
+
 if __name__ == '__main__':
     #Probamos la funcionalidad
+
+    test()
+    print("\n----Ha finalizado el testeo de datos----")
+    input("Presione enter para continuar: ")
+
     claveDefecto = '12345'
     manejE = ManejadorEmail()
     asig = input ("Quiere asignarle ala persona la clave por defecto?(s/n): ")
