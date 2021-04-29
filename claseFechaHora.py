@@ -31,6 +31,10 @@ class FechaHora:
             print("Fecha {}/{}/{} - hora {}:{}:{}  con datos erroneos\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
             self.cambios()
             self.Mostrar()
+        if ((self.__hs < 0) or (self.__min < 0) or (self.__seg < 0)):
+            print("Fecha {}/{}/{} - hora {}:{}:{}  con datos erroneos\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
+            self.cambios()
+            self.Mostrar()
 
     def Mostrar (self):
         print("Dia: {}, Mes: {}, Anio: {}, Hora: {}, Min: {}, Segundo: {}".format(self.__dia, self.__mes, self.__anio, self.__hs, self.__min, self.__seg))
@@ -102,12 +106,15 @@ class FechaHora:
             self.__min = 0
             self.__seg = 0
 
+        if (self.__anio < 0):
+            print("Fecha con Año no valido")
+            self.__anio = 1
         if (self.__dia < 0):
             print("Fecha con Dia no valido")
-            self.__dia = 0
+            self.__dia = 1
         if (self.__mes < 0):
             print("Fecha con Mes no valido")
-            self.__mes = 0
+            self.__mes = 1
         if (self.__hs < 0):
             print("Fecha con Hora no valida")
             self.__hs = 0
@@ -158,50 +165,65 @@ class FechaHora:
             print("No se puede realizar la Suma de las fechas\n")
 
     def __gt__ (self, otraFecha):               #(opcion3) retorna true o false
+        band = False
         if (type(self) == type(otraFecha)):
             if ((self.__dia == otraFecha.getDia()) and (self.__mes == otraFecha.getMes()) and (self.__anio == otraFecha.getAnio())):
                 if (self.__hs > otraFecha.getHora()):
-                    self.Mostrar()
+                    band = True
                 elif (self.__hs == otraFecha.getHora()):
                     if (self.__min > otraFecha.getMin()):
-                        self.Mostrar()
+                        band = True
                     elif (self.__min == otraFecha.getMin()):
                         if (self.__seg > otraFecha.getSeg()):
-                            self.Mostrar()
+                            band = True
                         elif (self.__seg == otraFecha.getSeg()):
-                            print("Ambas Fechas son exactamente iguales\n")
+                            #print("Ambas Fechas son exactamente iguales\n")
+                            band = False
                         else:
-                            otraFecha.Mostrar()
+                            #otraFecha.Mostrar()
+                            band = False
                     else:
-                        otraFecha.Mostrar()
+                        band = False
                 else:
-                    otraFecha.Mostrar()
+                    band = False
             else:
                 if (self.__anio > otraFecha.getAnio()):
-                    self.Mostrar()
+                    band = True
                 elif (self.__anio == otraFecha.getAnio()):
                     if (self.__mes > otraFecha.getMes()):
-                        self.Mostrar()
+                        band = True
                     elif (self.__mes == otraFecha.getMes()):
                         if (self.__dia > otraFecha.getDia()):
-                            self.Mostrar()
+                            band = True
                         else:                                       #no verificamos que el dia sea igual, sino se ejecuta el if de arriba
-                            otraFecha.Mostrar()
+                            band = False
                     else:
-                        otraFecha.Mostrar()
+                        band = False
                 else:
-                    otraFecha.Mostrar()
+                    band = False
             #return (self.__dia>otraFecha.getDia(), self.__mes> otraFecha.getMes(), self.__anio>otraFecha.getAnio(), self.__hs>otraFecha.getHora(), self.__min>otraFecha.getMin(), self.__seg>otraFecha.getSeg())
-        else:
-            print("No se puede realizar la Comparacion de fechas\n")
+        
+        #else:
+        #    print("No se puede realizar la Comparacion de fechas\n")
+        return band
+        
     def __sub__ (self, otraFecha):              #opcion 2
         if (type(self) == type(otraFecha)):
-            if (self.__anio > otraFecha.getAnio()):
-                unaFecha = FechaHora (self.__dia-otraFecha.getDia(), self.__mes- otraFecha.getMes(), self.__anio-otraFecha.getAnio(), self.__hs-otraFecha.getHora(), self.__min-otraFecha.getMin(), self.__seg-otraFecha.getSeg())
-                return unaFecha
-            else:
-                unaFecha = FechaHora (otraFecha.getDia() - self.__dia, otraFecha.getMes() - self.__mes, otraFecha.getAnio() - self.__anio, otraFecha.getHora() - self.__hs, otraFecha.getMin() - self.__min, otraFecha.getSeg() - self.__seg)
-                return unaFecha
+            #pasamos las dos fechas a segundos
+            segDi1 =self.__dia * 86400
+            segHora1 = self.__hs * 3600
+            segMin1 = (self.__min) * 60
+            segMes1 = self.__mes * 2629800                  #Un mes equivale a 2.629.800 segundos
+            segAnio1 = self.__anio * 31557600               #Un año equivale a 31.557.600 segundos
+            segDi2 = (otraFecha.getDia()) * 86400
+            segHora2 = (otraFecha.getHora()) * 3600
+            segMin2 = (otraFecha.getMin()) * 60
+            segMes2 = (otraFecha.getMes()) * 2629800
+            segAnio2 = (otraFecha.getAnio()) * 31557600
+            sumaSeg1 = segDi1 + segHora1 + segMin1 + segMes1 + segAnio1 + (self.__seg)
+            sumaSeg2 = segHora2 + segMin2 + (otraFecha.getSeg()) + segDi2 + segMes2 + segAnio2
+            print("Suma total de segundos para 1era Fecha: {}".format(sumaSeg1))
+            print("Suma total de segundos para 2era Fecha: {}".format(sumaSeg2))
+            return (sumaSeg1 - sumaSeg2)
         else:
             print("No se puede realizar la Resta de las fechas\n")
-    

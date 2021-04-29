@@ -30,12 +30,22 @@ class MenuFechaHora:
     def opcion2(self, unaFecha, otraFecha):
         print("Ejecutamos la Opcion 2\n")
         print("La resta de las Fechas es: ")
-        resta = unaFecha - otraFecha
-        resta.Mostrar()
-        resta.validarBisiesto()
-        resta.validar()
+        band = unaFecha > otraFecha
+        if (band == True):
+            resta = unaFecha - otraFecha
+        else:
+            resta = otraFecha - unaFecha
+        print("La resta de las dos fechas equivalentes en segundos es: {}\n".format(resta))
     
     def opcion3 (self, unaFecha, otraFecha):
         print("Ejecutamos la Opcion 3\n")
-        print("La fecha Mayor es: ")
-        unaFecha > otraFecha
+        #print("La fecha Mayor es: ")
+        #unaFecha > otraFecha
+        bandera = unaFecha > otraFecha
+        print(bandera)
+        if (bandera == True):
+            print("La fecha Mayor es: ")
+            unaFecha.Mostrar()
+        else:
+            print("La fecha Mayor es: ")
+            otraFecha.Mostrar()
