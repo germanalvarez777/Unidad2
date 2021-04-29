@@ -15,7 +15,22 @@ def cargarFecha ():
     print("==".center(50, '='))
     return fecha
 
+def test ():
+    print("TEST".center(50,'='))
+    print("Cargamos la primera fecha Test: ")
+    unaFechaTest = cargarFecha()
+    print("Cargamos la segunda fecha Test: ")
+    otraFechaTest = cargarFecha()
+
+    unaFechaTest.Mostrar()
+    otraFechaTest.Mostrar()
+
 if __name__ == '__main__':
+
+    test()
+    print("----Ha finalizado el testeo----")
+    input("Presione una tecla para continuar: ")
+
     print("Cargamos la primera fecha: ")
     unaFecha = cargarFecha()
     print("Cargamos la segunda fecha: ")
