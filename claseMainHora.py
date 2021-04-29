@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
    f = FechaHora(d,mes,a,h, m, s)
    f.Mostrar()
+   f.validar()
 
    input("Presione una tecla para continuar1: ")
 
