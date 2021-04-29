@@ -2,7 +2,19 @@ import os
 from claseMenuAlumno import MenuAlumno
 from claseManejadorAlumno import ManejadorAlumno
 from claseAlumnoEscuela import AlumnoEscuela
+
+def test ():
+    print("TEST".center(40,'='))
+    maTest = ManejadorAlumno()
+    maTest.testListaAlumno()
+    print("-----Mostramos la lista de Alumnos-----\n")
+    maTest.mostrarLista()
+
 if __name__ == '__main__':
+
+    test()
+    print("-----Ha finalizado el testeo de datos-----")
+    input("Presione una tecla para continuar: ")
     ma = ManejadorAlumno()
     ma.testListaAlumno()
     print("-----Mostramos la lista de Alumnos-----\n")

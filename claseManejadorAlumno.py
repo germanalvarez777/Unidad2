@@ -38,6 +38,7 @@ class ManejadorAlumno:
                 if (alum.getInas() > AlumnoEscuela.getMaxInasistencias()):
                     porc = (alum.getInas() * 100)/AlumnoEscuela.getMaxInasistencias()
                     print("%s       %3.2f" %(alum.getNombre(), porc-100))               #como el porcentaje supera los 100, restamos para solo mostrar el incremento
+                    #print("{:8} {:8}".format(alum.getNombre(), porc-100))
                 else:
                     print("--Alumno {} no supero la cantidad max de inasistencias--\n".format(alum.getNombre()))
  
