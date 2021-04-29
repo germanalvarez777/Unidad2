@@ -4,8 +4,10 @@ from claseConjunto import Conjunto
 
 def test ():
     print("TEST".center(40, '='))
+    print("Cargamos el primer conjunto")
     con1Test = Conjunto ()
     con1Test.cargarConjunto()
+    print("\nCargamos el segundo Conjunto")
     conj2Test = Conjunto ()
     conj2Test.cargarConjunto()
 
@@ -19,8 +21,10 @@ if __name__ == '__main__':
     test()
 
     print("Ha finalizado el TEST".center(30,'-'))
+    print("\nCargamos el primer conjunto")
     con1 = Conjunto ()
     con1.cargarConjunto()
+    print("\nCargamos el segundo conjunto")
     conj2 = Conjunto ()
     conj2.cargarConjunto()
     salir = True
