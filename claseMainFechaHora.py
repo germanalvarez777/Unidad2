@@ -23,7 +23,9 @@ def test ():
     otraFechaTest = cargarFecha()
 
     unaFechaTest.Mostrar()
+    unaFechaTest.validar()
     otraFechaTest.Mostrar()
+    otraFechaTest.validar()
 
 if __name__ == '__main__':
 
@@ -39,7 +41,9 @@ if __name__ == '__main__':
     #otraFecha = FechaHora (31,12,2021,22,57,55)
 
     unaFecha.Mostrar()
+    unaFecha.validar()
     otraFecha.Mostrar()
+    otraFecha.validar()
 
     menu = MenuFechaHora()
     salir = True

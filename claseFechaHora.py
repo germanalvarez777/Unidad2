@@ -104,14 +104,19 @@ class FechaHora:
 
         if (self.__dia < 0):
             print("Fecha con Dia no valido")
+            self.__dia = 0
         if (self.__mes < 0):
             print("Fecha con Mes no valido")
+            self.__mes = 0
         if (self.__hs < 0):
             print("Fecha con Hora no valida")
+            self.__hs = 0
         if (self.__min < 0):
             print("Fecha con Minutos no validos")
+            self.__min = 0
         if (self.__seg < 0):
             print("Fecha con Segundos no validos")
+            self.__seg = 0
                          
 
     def PonerEnHora (self, h=0, mi=0, s=0):
