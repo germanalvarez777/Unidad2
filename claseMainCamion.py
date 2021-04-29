@@ -4,7 +4,26 @@ import csv
 from claseCosecha import Cosecha
 from claseManejadorCamion import ManejadorCamion
 
+def test ():
+    print("TEST".center(40, '='))
+    mcTest = ManejadorCamion()
+    mcTest.testListaCamion()
+    print("Mostramos la lista de camiones")
+    mcTest.mostrarLista()
+    cosTest = Cosecha()
+    print("Se carga la lista Bidimensional desde el archivo csv\n")
+    cosTest.testLista()
+    print("Ingresamos algunos pesos desde el teclado\n")
+    cosTest.acumularPesos()
+    print("\nMostramos la lista Bidimensional de Cosecha")
+    cosTest.mostrarLista()
+
 if __name__ == '__main__':
+
+    test()
+    print("\n--Ha finalizado el testeo de datos---")
+    input("Presione una tecla para continuar: ")
+
     mc = ManejadorCamion()
     mc.testListaCamion()
     print("Mostramos la lista de camiones")
