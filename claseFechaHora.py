@@ -196,12 +196,12 @@ class FechaHora:
             print("No se puede realizar la Comparacion de fechas\n")
     def __sub__ (self, otraFecha):              #opcion 2
         if (type(self) == type(otraFecha)):
-            if (self.__anio > (otraFecha.getAnio())):
+            if (self.__anio > otraFecha.getAnio()):
                 unaFecha = FechaHora (self.__dia-otraFecha.getDia(), self.__mes- otraFecha.getMes(), self.__anio-otraFecha.getAnio(), self.__hs-otraFecha.getHora(), self.__min-otraFecha.getMin(), self.__seg-otraFecha.getSeg())
                 return unaFecha
-            elif (self.__anio < (otraFecha.getAnio())):
-                unaFecha = FechaHora (otraFecha.getDia() - self.__dia, otraFecha.getMes() - self.__mes, otraFecha.getAnio()-self.__anio, otraFecha.getHora() - self.__hs,otraFecha.getMin() - self.__min, otraFecha.getSeg() - self.__seg)
-                return unaFecha        
+            else:
+                unaFecha = FechaHora (otraFecha.getDia() - self.__dia, otraFecha.getMes() - self.__mes, otraFecha.getAnio() - self.__anio, otraFecha.getHora() - self.__hs, otraFecha.getMin() - self.__min, otraFecha.getSeg() - self.__seg)
+                return unaFecha
         else:
             print("No se puede realizar la Resta de las fechas\n")
     
