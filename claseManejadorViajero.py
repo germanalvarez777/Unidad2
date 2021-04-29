@@ -1,7 +1,6 @@
 import csv
 import os
 from claseViajeroFrecuente import ViajeroFrecuente
-# ejecutamos el programa desde modulo main2.py
 
 class ManejadorViajero:
     __listaViajeros = []
@@ -31,6 +30,14 @@ class ManejadorViajero:
                 millas = int(fila[4])
                 viajero = ViajeroFrecuente (nrov, dni, nombre, apellido, millas)
                 self.agregarLista(viajero)
+    
+    def validarNro (self, nroid):
+        band = False
+        for viajero in self.__listaViajeros:                #otra forma es verificar el numero por while
+            if (nroid == viajero.getnroViajero()):
+                band = True
+        return band
+
     def consultarMillas (self, numerov):                       #apartado 2a
         for viajero in self.__listaViajeros:
             if (viajero.getnroViajero() == numerov):

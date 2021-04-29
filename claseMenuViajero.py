@@ -20,7 +20,7 @@ class Menu:
         func(numerov)
     
     def salir(self):
-        print('Salir')
+        print('Salida del Programa')
 
     def opcion1(self, numerov):
         print("Ejecutamos la Opcion 1\n")

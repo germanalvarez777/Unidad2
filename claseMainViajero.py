@@ -12,10 +12,16 @@ if __name__ == '__main__':          #cuando hacemos la lectura del archivo csv, 
     mv.mostrarLista()
     numero = int(input("Ingrese un numero de viajero: "))
 
+    b = mv.validarNro (numero)
+    if (b == True):
+        print("Numero de viajero valido\n")
+    else:
+        print("Numero de viajero no valido\n")
+        numero = int(input("Ingrese un numero de viajero valido: "))
+
     menu = Menu()
     salir = True
     while salir:
-        #print("\n------------Menu------------\n1- Inciso a\n2- Inciso b\n3- Inciso c\n4- Salir\n")
         print("""
             Menu de Opciones
             a- Consultar Cantidad de Millas.
@@ -24,6 +30,12 @@ if __name__ == '__main__':          #cuando hacemos la lectura del archivo csv, 
             """)
         op = (input('Ingrese una opcion: '))
         os.system('clear')                              #Windows utilizamos cls, en Linux clear
-        menu.opcion(op, numero)
-        if ((op != 'a') and (op != 'b') and (op != 'c')):
+        if ((op != 'a') and (op != 'b') and (op != 'c') and (op != 'd')):
+            print("\nOpcion no valida")
             salir = False
+        else:
+            if (op == 'd'):
+                menu.salir()
+                salir = False
+            else:  
+                menu.opcion(op, numero)

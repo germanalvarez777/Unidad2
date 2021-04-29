@@ -33,22 +33,3 @@ class ViajeroFrecuente:
             print("Error en la operacion de canjear millas")
     def mostrarDatos (self):
         print("\nNumero Viajero: {} - DNI: {} - Nombre: {} - Apellido: {} - Millas: {}\n".format(self.__nroViajero, self.__dni, self.__nombre, self.__apellido, self.__millasAcum))
-
-#para verificar la correcion de clase viajero
-"""
-if __name__ == '__main__':
-    nro = int(input("Ingrese el numero del viajero: "))
-    dni = int(input ("Ingrese el dni del viajero {}: ".format(nro)))
-    nombre = input("Ingrese el nombre del viajero: ")
-    apellido = input("Ingrese el apellido del viajero: ")
-    millas = int(input("Ingrese la cantidad de millas que cuenta: "))
-
-    v = ViajeroFrecuente(nro, dni, nombre, apellido, millas)
-    v.mostrarDatos()
-    print("Millas acumuladas: ", v.cantidadTotaldeMillas())
-    acum = int(input("Ingrese la cantidad de millas recorridas en el ultimo viaje:\n "))
-    v.acumularMillas (acum)
-    print("Nuevas millas acumuladas: ", v.cantidadTotaldeMillas())
-    canjear = int(input("Ingrese las millas a canjear: "))
-    v.canjearMillas (canjear)
-"""
