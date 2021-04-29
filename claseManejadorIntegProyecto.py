@@ -38,7 +38,6 @@ class ManejadorIntegProyecto:
     def contar (self, idBuscar):
         cont = 0
         for intproy in self.__listaInteg:
-            #if (idBuscar == mip[j].getId()):
             if (idBuscar == intproy.getId()):
                 cont += 1                       #contamos que hayan mas de 3 integrantes        
         return cont
@@ -63,8 +62,7 @@ class ManejadorIntegProyecto:
         band = False
         for intproy in self.__listaInteg:
             if (idBuscar == intproy.getId()):
-                direc = self.validarDirector(idBuscar)
-                if (direc == True):
+                if (intproy.getRol() == 'director'):
                     if ((intproy.getCategoria() == 'I') or (intproy.getCategoria() == 'II')):
                         band = True
         
@@ -74,8 +72,7 @@ class ManejadorIntegProyecto:
         band = False
         for intproy in self.__listaInteg:
             if (idBuscar == intproy.getId()):
-                cod = self.validarCodirector (idBuscar)
-                if (cod == True):
+                if (intproy.getRol() == 'codirector'):
                     if ((intproy.getCategoria() == 'I') or (intproy.getCategoria() == 'II') or (intproy.getCategoria() == 'III')):
                         band = True
         
