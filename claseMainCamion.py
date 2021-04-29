@@ -10,7 +10,10 @@ if __name__ == '__main__':
     print("Mostramos la lista de camiones")
     mc.mostrarLista()
     cos = Cosecha()
+    print("Se carga la lista Bidimensional desde el archivo csv\n")
     cos.testLista()
+    print("Ingresamos algunos pesos desde el teclado\n")
+    cos.acumularPesos()
     print("\nMostramos la lista Bidimensional de Cosecha")
     cos.mostrarLista()
 
@@ -25,7 +28,12 @@ if __name__ == '__main__':
             """)
         op = (input('Ingrese una opcion: '))
         os.system('clear')                              #Windows utilizamos cls, en Linux clear
-        menu.opcion(op)
-        #salir = op == 4
         if ((op != '1') and (op != '2') and (op != '3')):
+            print("Opcion no valida")
             salir = False
+        else:
+            if (op == '3'):
+                menu.salir()
+                salir = False
+            else:
+                menu.opcion(op, cos)

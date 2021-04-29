@@ -20,22 +20,23 @@ class ManejadorCamion:
                 nom = fila[1]
                 pat = fila[2]
                 marca = fila[3]
-                tara = int(fila[4])
+                tara = float(fila[4])
                 if ((id >= 1) and (id <= 20)):
                     unCamion = Camion(id, nom, pat, marca, tara)
                     self.agregarLista (unCamion)
                 else:
                     print("Id Camion {} , patente {} no es valido". format(id, pat))
-                
-    def buscarCamion (self, nroCamion, pesoTotalC):
+        archi.close()
+
+    def buscarCamion (self, nroCamion, pesoTotalC):             
         for c in self.__listaCamion:
             if (c.getNro() == nroCamion):
-                return pesoTotalC - c.getPeso()             #peso descargado = peso total-tara    
+                return pesoTotalC - c.getPeso()             #peso descargado = peso total-tara , pesototal > tara   
     def mostrarLista (self):
         for c in self.__listaCamion:
-            c.mostrarCamion()
             print("Camion x".center(50, "="))
+            c.mostrarCamion()
     def obtenerCamion (self, indice, pesototal):
         for camion in self.__listaCamion:
             if (camion.getNro() == indice):
-                print("{}      {}        {}".format(camion.getPatente(), camion.getNombre(), self.buscarCamion(indice, pesototal)))
+                print("%s      %s           %.2f" %(camion.getPatente(), camion.getNombre(), self.buscarCamion(indice, pesototal)))

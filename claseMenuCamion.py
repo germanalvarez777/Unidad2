@@ -4,7 +4,6 @@ from claseCosecha import Cosecha
 class MenuCamion:
     __switcher=None
     __camiones = []
-    __cosechas = []
     def __init__(self):
         self.__switcher = { '1':self.opcion1,
             '2':self.opcion2,
@@ -12,28 +11,27 @@ class MenuCamion:
         }
         self.__camiones = ManejadorCamion()
         self.__camiones.testListaCamion()
-        self.__cosechas = Cosecha ()
-        self.__cosechas.testLista()
 
     def getSwitcher(self):
         return self.__switcher
 
-    def opcion(self, op):
+    def opcion(self, op, cos):
         func=self.__switcher.get(op, lambda: print("Opción no válida"))
-        func()
+        func(cos)
     
     def salir(self):
-        print('Salir')
+        print('Salida del Programa')
 
-    def opcion1(self):
+    def opcion1(self, cos):
         print("Ejecutamos la Opcion 1\n")
         nroCamion = int (input("Ingrese un identificador de camion: "))
-        pesoTotalC = self.__cosechas.buscarPeso(nroCamion)
+        pesoTotalC = cos.buscarPeso(nroCamion)
         if (pesoTotalC != -1):                                  #peso obtenido es valido
-            print("La cantidad de kilos descargados es: ", self.__camiones.buscarCamion(nroCamion, pesoTotalC)) 
-        
+            print("La cantidad de kilos descargados es: %.2f" % (self.__camiones.buscarCamion(nroCamion, pesoTotalC))) 
+        else:
+            print("Identificador de camion y peso no valido\n")
 
-    def opcion2(self):
+    def opcion2(self, cos):
         print("Ejecutamos la Opcion 2\n")
         nrodia = int(input("Ingrese un numero de dia: "))
-        self.__cosechas.mostrarDia(nrodia)
+        cos.mostrarDia(nrodia)
