@@ -14,7 +14,7 @@ class FechaHora:
         self.__seg = s
 
     def validar (self):
-        if ((self.__dia <= 31) and (self.__mes <= 12) and (self.__hs <= 24) and (self.__min <= 60) and (self.__seg <= 60)):
+        if ((self.__dia <= 31) and (self.__mes <= 12) and (self.__hs <= 24) and (self.__min < 60) and (self.__seg < 60)):
             if ((self.__dia <= 31) and ((self.__mes == 1) or (self.__mes == 3) or (self.__mes == 5) or (self.__mes == 7) or (self.__mes == 8) or (self.__mes == 10) or (self.__mes == 12))):
                 print("{}/{}/{} - hora {}:{}:{} es valido\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
             
@@ -22,12 +22,16 @@ class FechaHora:
                 print("{}/{}/{} - hora {}:{}:{} es valido\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
             
             elif ((self.__mes == 2) and (self.__dia <= 29)):
-                print("Mes de febrero con dia valido para fecha {}/{} - hora {}:{}:{}\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
+                print("Mes de febrero con dia valido para fecha {}/{}/{} - hora {}:{}:{}\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
             else:
-                print("{}/{}/{} no es una Fecha valida\n".format(self.__dia, self.__mes,self.__anio))      
+                print("{}/{}/{} no es una Fecha valida\n".format(self.__dia, self.__mes,self.__anio))
+                self.cambios()
+                self.Mostrar()      
         else:
             print("Fecha {}/{}/{} - hora {}:{}:{}  con datos erroneos\n".format(self.__dia,self.__mes,self.__anio,self.__hs,self.__min,self.__seg))
-       
+            self.cambios()
+            self.Mostrar()
+
     def Mostrar (self):
         print("Dia: {}, Mes: {}, Anio: {}, Hora: {}, Min: {}, Segundo: {}".format(self.__dia, self.__mes, self.__anio, self.__hs, self.__min, self.__seg))
         print("===".center(50, '='))
@@ -46,31 +50,38 @@ class FechaHora:
             self.__min += 1
             self.__seg = 0
         elif (self.__seg > 60):
-            print("Se supero los 60 segundos, error en el ingreso de datos\n")
-            self.__seg = 0
+            self.__min += self.__seg // 60               #asignamos nuevo valor a min
+            self.__seg = self.__seg - 60
         if (self.__min == 60):
             self.__hs += 1
             self.__min = 0
         elif (self.__min > 60):
-            print("Se supero los 60 min, error en el ingreso de datos\n")
-            self.__min = 0
+            self.__hs += self.__min // 60                #asignamos nuevo valor a hora
+            self.__min = self.__min - 60
         if (self.__hs == 24):
             self.__dia += 1
-            self.__hs = 0
+            self.__hs = self.__hs- 24
         elif (self.__hs > 24):
-            print("Se supero las 24 horas, error en el ingreso de datos\n")
-            self.__hs = 0
-        if ((self.__dia == 31) and ((self.__mes == 1) or (self.__mes == 3) or (self.__mes == 5) or (self.__mes == 7) or (self.__mes == 8) or (self.__mes == 10))):
+            self.__dia += self.__hs // 24                #asignamos nuevo valor a dia
+            self.__hs = self.__hs - 24
+        if ((self.__dia == 31) and ((self.__mes == 1) or (self.__mes == 3) or (self.__mes == 5) or (self.__mes == 7) or (self.__mes == 8) or (self.__mes == 10) or (self.__mes == 12))):
             self.__mes += 1
             self.__dia = 1
-            self.__hs = 0
         elif ((self.__dia == 30) and ((self.__mes == 4) or (self.__mes == 6) or (self.__mes == 9) or (self.__mes == 11))):
             self.__mes += 1
             self.__dia = 1
-            self.__hs = 0
         elif (self.__dia > 31):
-            print("Se supero los 31 dias, error en el ingreso de datos\n")
-            self.__dia = 0
+            self.__mes += (self.__dia // 30)             #asignamos nuevo valor a mes
+            self.__dia = self.__dia - 31
+            if (self.__dia > 31):
+                self.__mes += (self.__dia // 30)
+                self.__dia = self.__dia - 31
+        if (self.__mes > 12): 
+            self.__anio += 1
+            self.__mes = self.__mes - 12
+            if (self.__mes > 12):                   #se evalua si el total de meses sigue siendo mayor a 12
+                self.__anio += 1
+                self.__mes = self.__mes - 12
         if bisiesto:
             if ((self.__dia == 29) and (self.__mes == 2)):
                 print("Febrero 29 Biciesto")
@@ -88,6 +99,20 @@ class FechaHora:
             self.__mes = 1
             self.__dia = 1
             self.__hs = 0
+            self.__min = 0
+            self.__seg = 0
+
+        if (self.__dia < 0):
+            print("Fecha con Dia no valido")
+        if (self.__mes < 0):
+            print("Fecha con Mes no valido")
+        if (self.__hs < 0):
+            print("Fecha con Hora no valida")
+        if (self.__min < 0):
+            print("Fecha con Minutos no validos")
+        if (self.__seg < 0):
+            print("Fecha con Segundos no validos")
+                         
 
     def PonerEnHora (self, h=0, mi=0, s=0):
         if ((h <= 24) and (mi <= 60) and (s <= 60)):
@@ -122,11 +147,8 @@ class FechaHora:
         return self.__seg
     def __add__ (self, otraFecha):              #opcion 1
         if (type(self) == type(otraFecha)):
-            #return (self.__dia+int(otraFecha.getDia()), self.__mes+ int(otraFecha.getMes()), self.__anio+int(otraFecha.getAnio()), self.__hs+int(otraFecha.getHora()), self.__min+int(otraFecha.getMin()), self.__seg+int(otraFecha.getSeg()))
             unaFecha = FechaHora (self.__dia+int(otraFecha.getDia()), self.__mes+ int(otraFecha.getMes()), self.__anio+int(otraFecha.getAnio()), self.__hs+int(otraFecha.getHora()), self.__min+int(otraFecha.getMin()), self.__seg+int(otraFecha.getSeg()))
-            unaFecha.Mostrar()
-            unaFecha.validarBisiesto()
-            unaFecha.validar()
+            return unaFecha
         else:
             print("No se puede realizar la Suma de las fechas\n")
 
@@ -169,10 +191,12 @@ class FechaHora:
             print("No se puede realizar la Comparacion de fechas\n")
     def __sub__ (self, otraFecha):              #opcion 2
         if (type(self) == type(otraFecha)):
-            #return (self.__dia-otraFecha.getDia(), self.__mes- otraFecha.getMes(), self.__anio-otraFecha.getAnio(), self.__hs-otraFecha.getHora(), self.__min-otraFecha.getMin(), self.__seg-otraFecha.getSeg())
-            unaFecha = FechaHora (self.__dia-otraFecha.getDia(), self.__mes- otraFecha.getMes(), self.__anio-otraFecha.getAnio(), self.__hs-otraFecha.getHora(), self.__min-otraFecha.getMin(), self.__seg-otraFecha.getSeg())
-            unaFecha.Mostrar()
-            unaFecha.validarBisiesto()
-            unaFecha.validar()
+            if (self.__anio > (otraFecha.getAnio())):
+                unaFecha = FechaHora (self.__dia-otraFecha.getDia(), self.__mes- otraFecha.getMes(), self.__anio-otraFecha.getAnio(), self.__hs-otraFecha.getHora(), self.__min-otraFecha.getMin(), self.__seg-otraFecha.getSeg())
+                return unaFecha
+            elif (self.__anio < (otraFecha.getAnio())):
+                unaFecha = FechaHora (otraFecha.getDia() - self.__dia, otraFecha.getMes() - self.__mes, otraFecha.getAnio()-self.__anio, otraFecha.getHora() - self.__hs,otraFecha.getMin() - self.__min, otraFecha.getSeg() - self.__seg)
+                return unaFecha        
         else:
             print("No se puede realizar la Resta de las fechas\n")
+    

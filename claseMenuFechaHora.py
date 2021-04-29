@@ -8,7 +8,6 @@ class MenuFechaHora:
             '3':self.opcion3,
             '4':self.salir
         }
-        #self.__fechahora = FechaHora()          #agregamos algunos valores
     
     def getSwitcher(self):
         return self.__switcher
@@ -23,12 +22,18 @@ class MenuFechaHora:
     def opcion1(self, unaFecha, otraFecha):
         print("Ejecutamos la Opcion 1\n")
         print("La suma de las Fechas: ")
-        unaFecha + otraFecha
+        suma = unaFecha + otraFecha
+        suma.Mostrar()
+        suma.validarBisiesto()
+        suma.validar()
 
     def opcion2(self, unaFecha, otraFecha):
         print("Ejecutamos la Opcion 2\n")
         print("La resta de las Fechas es: ")
-        unaFecha - otraFecha
+        resta = unaFecha - otraFecha
+        resta.Mostrar()
+        resta.validarBisiesto()
+        resta.validar()
     
     def opcion3 (self, unaFecha, otraFecha):
         print("Ejecutamos la Opcion 3\n")

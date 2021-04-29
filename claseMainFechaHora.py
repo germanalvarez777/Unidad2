@@ -17,11 +17,11 @@ def cargarFecha ():
 
 if __name__ == '__main__':
     print("Cargamos la primera fecha: ")
-    #unaFecha = cargarFecha()
+    unaFecha = cargarFecha()
     print("Cargamos la segunda fecha: ")
-    #otraFecha = cargarFecha()
-    unaFecha = FechaHora (23,4,2031,17,42,55)
-    otraFecha = FechaHora (23,4,2031,17,42,58)
+    otraFecha = cargarFecha()
+    #unaFecha = FechaHora (31,12,2020,24,59,59)
+    #otraFecha = FechaHora (31,12,2021,22,57,55)
 
     unaFecha.Mostrar()
     otraFecha.Mostrar()
@@ -37,6 +37,12 @@ if __name__ == '__main__':
             """)
         op = (input('Ingrese una opcion: '))
         os.system('clear')                              #Windows utilizamos cls, en Linux clear
-        menu.opcion(op, unaFecha, otraFecha)
-        if ((op != '1') and (op != '2') and (op != '3')):
+        if ((op != '1') and (op != '2') and (op != '3') and (op != '4')):
+            print("Opcion no valida")
             salir = False
+        else:
+            if (op == '4'):
+                menu.salir()
+                salir = False
+            else:
+                menu.opcion(op, unaFecha, otraFecha)
