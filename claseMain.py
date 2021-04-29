@@ -1,5 +1,23 @@
 from claseFechaHora import FechaHora
+
+def test ():
+    print("TEST".center(40,'='))
+    d=int(input("Ingrese Dia: "))
+    mes=int(input("Ingrese Mes: "))
+    a=int(input("Ingrese Año: "))
+    h=int(input("Ingrese Hora: "))
+    m=int(input("Ingrese Minutos: "))
+    s=int(input("Ingrese Segundos: "))
+
+    rTest = FechaHora (d,mes,a,h,m,s) 
+    rTest.Mostrar()
+    rTest.validar()
+
 if __name__ == '__main__':
+
+    test()
+    print("----Ha finalizado el testeo de datos----")
+    input("Presione una tecla para continuar: ")
 
     d=int(input("Ingrese Dia: "))
     mes=int(input("Ingrese Mes: "))
