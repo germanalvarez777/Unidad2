@@ -96,6 +96,6 @@ class ManejadorProyecto:
 
     def listadoOrdenado (self):
         #ordenamos la lista del manejador
-        self.__listaProyecto.sort()
+        self.__listaProyecto.sort(reverse=True)
         #mostramos la lista en forma ordenada
         self.mostrarListadoProy()
